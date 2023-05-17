@@ -1,0 +1,27 @@
+name: Evict Chars Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+    
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19
+      
+    - name: Create Folder
+      run: mkdir build
+
+    - name: Chars Build
+      run: go build -o ./build/evict_chars -v ./src/main.go
