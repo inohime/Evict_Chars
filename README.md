@@ -1,4 +1,6 @@
-<p align="center"> Evict Chars </p>
+<h1 align="center"> 
+  Evict Chars 
+</h1>
 
 ## Description
 A simple command-line tool for evicting words from a file and printing the result string.
