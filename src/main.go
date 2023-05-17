@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"path/filepath"
+	"runtime"
 	"strings"
 )
 
@@ -11,8 +13,11 @@ func main() {
 	ch1 := make(chan []string)
 	defer close(ch1)
 
-	go ReadFile("test_data_2.txt", ch1)
-	go ReadFile("test_data_1.txt", ch1)
+	_, file, _, _ := runtime.Caller(0)
+	dataPath := filepath.Join(filepath.Dir(file), "../")
+
+	go ReadFile(dataPath+"/test_data_2.txt", ch1)
+	go ReadFile(dataPath+"/test_data_1.txt", ch1)
 
 	x := EvictChars(strings.Join(<-ch1, ", "))
 	y := EvictChars(strings.Join(<-ch1, ", "))
